@@ -4,7 +4,7 @@ import SearchBar from '../components/SearchBar';
 import useResults from '../hooks/useResults';
 import ResultList from '../components/ResultList';
 
-const SearchScreen = () => {
+const SearchScreen = ( {navigation} ) => {
     const [term,setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
 
@@ -13,9 +13,8 @@ const SearchScreen = () => {
             return result.price === price;
         });
     }
-    console.log(results)
     return(
-        <View style={{ flex:1 }}>
+        <View style={{ flex:1}}>
             <SearchBar 
                 term={term} 
                 onTermChange={newTerm => setTerm(newTerm)}
@@ -24,9 +23,9 @@ const SearchScreen = () => {
             { errorMessage ? <Text style={styles.errorMsg}>{errorMessage}</Text> : null}
             <Text style={styles.result}>We have found {results.length} results.</Text>
             <ScrollView>
-                <ResultList title='Cost Effective' results={filterResultByPrice('$')}/>
-                <ResultList title='Bit Pricier' results={filterResultByPrice('$$')}/>
-                <ResultList title='Big Spender' results={filterResultByPrice('$$$')}/>
+                <ResultList title='Cost Effective' results={filterResultByPrice('$')} navigation={navigation}/>
+                <ResultList title='Bit Pricier' results={filterResultByPrice('$$')} navigation={navigation}/>
+                <ResultList title='Big Spender' results={filterResultByPrice('$$$')} navigation={navigation}/>
             </ScrollView>
 
         </View>  

@@ -8,7 +8,6 @@ const ResultDetails = ( { result }) => {
             <Text style={styles.name}>{result.name}</Text>
             <Text style={styles.details}>{result.rating} Stars, {result.review_count} Reviews</Text>
         </View>
-  
     );
 }
 

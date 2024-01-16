@@ -12,18 +12,25 @@ const DetailsScreen  = ( { route }) => {
         setResult(response.data);
     };
 
+    
+
     useEffect(() => {
         getResult(id);
+        
     }, []);
 
     if (!result) {
         return null;
     }
-    
+    console.log({result});
     return(
+        
         <View style={styles.container}>
             <Text style={styles.title}>{result.name}</Text>
             <FlatList
+                style={styles.list}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
                 data={result.photos}
                 keyExtractor={(photos) => photos}
                 renderItem={({item}) => {
@@ -42,16 +49,18 @@ const DetailsScreen  = ( { route }) => {
 
 const styles = StyleSheet.create({
     container:{
-        marginLeft: 15,
-        alignItems: 'flex-start',
+        alignItems: 'center',
     },
     title: {
         marginVertical: 10,
         fontSize: 24,
         fontWeight: 'bold',
     },
+    list:{
+        marginHorizontal: 15,
+    },
     image:{
-        width: 300,
+        width: 400,
         height: 150,
         borderRadius: 5,
         marginBottom: 3,

@@ -25,7 +25,6 @@ const ResultList = ( { title, results, navigation }) => {
                 }}
             />
         </View>
-  
     );
 }
 
